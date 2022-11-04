@@ -1,0 +1,54 @@
+{% extends "Learn_Now/layout.html" %}
+{% load static %}
+{% block body %}
+
+<div class="unit-center">
+        <div>
+            <h2>Understanding {{course_name}}</h2>
+            <h3>Quiz for Lecture {{quiz_num}}</h3>
+        </div>
+        <div class="quiz_questions">
+            <form id="quiz_form" action="{% url 'save_quiz' course_name quiz_num %}" method="POST">
+                {% csrf_token %}
+                <p>1. {{quiz_info.question_1}}<p>
+                    <input type="radio" id="ans_q_1_T" value="True" name="quest_1">
+                    <label for="ans_q_1_T">True</label><br>
+                    <input type="radio" id="ans_q_1_F" value="False" name="quest_1">
+                    <label for="ans_q_1_F">False</label><br>
+                <br>
+
+                <p>2. {{quiz_info.question_2}}<p>
+                    <input type="radio" id="ans_q_2_T" value="True" name="quest_2">
+                    <label for="ans_q_2_T">True</label><br>
+                    <input type="radio" id="ans_q_2_F" value="False" name="quest_2">
+                    <label for="ans_q_2_F">False</label><br>
+                <br>
+
+                <p>3. {{quiz_info.question_3}}<p>
+                    <input type="radio" id="ans_q_3_T" value="True" name="quest_3">
+                    <label for="ans_q_3_T">True</label><br>
+                    <input type="radio" id="ans_q_3_F" value="False" name="quest_3">
+                    <label for="ans_q_3_F">False</label><br>
+                <br>
+
+                <p>4. {{quiz_info.question_4}}<p>
+                    <input type="radio" id="ans_q_4_T" value="True" name="quest_4">
+                    <label for="ans_q_4_T">True</label><br>
+                    <input type="radio" id="ans_q_4_F" value="False" name="quest_4">
+                    <label for="ans_q_4_F">False</label><br>
+                <br>
+
+                <p>5. {{quiz_info.question_5}}<p>
+                    <input type="radio" id="ans_q_5_T" value="True" name="quest_5">
+                    <label for="ans_q_5_T">True</label><br>
+                    <input type="radio" id="ans_q_5_F" value="False" name="quest_5">
+                    <label for="ans_q_5_F">False</label><br>
+                <br>
+
+
+                <input type="submit" class="btn btn-primary" value="Submit"><br>
+            </form>
+            
+        </div>
+</div>    
+{% endblock %}

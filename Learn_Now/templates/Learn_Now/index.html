@@ -1,0 +1,85 @@
+{% extends "Learn_Now/layout.html" %}
+{% load static %}
+{% block body %}
+<div class="unit-center">
+    <p class="home_info">
+        Here are our current and future classes. 
+        Please, <span><a href="{% url 'register' %}" class="link-primary">register</a></span> or <a href="{% url 'login' %}" class="link-primary">login</a> 
+        to join a class.
+        Got to your <a href="{% url 'dashboard' %}">dashboard</a> to see your classes. 
+    </p>
+    {% for unit in units %}
+        <div class="unit_div">
+        <h2 class="unit_title">Unit: {{unit.unit_name}}<h2>
+        </div>
+        <p class="lecture_description">
+            {{unit.unit_discription}}
+        </p>
+        <div>    
+                {% if user.is_authenticated %}
+                    {% for course in courses %}
+                        {% if course.course_unit == unit %}
+                            {% if course.current == True %}
+                                <h4 class="course_status">Currently Offered Class<h4>
+                                <div class="main_course_list">
+                                    <h4 class="class_title">Understanding {{course.course_name}}</h4>
+                                    <p class="class_discription">
+                                        {{course.course_info}}
+                                    </p>
+                                    {% if user in course.current_students.all and user not in course.students_completed.all%}
+                                        <p>You are taking this course</p>
+                                        <a class="btn btn-primary" href="{% url 'course_page' course.id %}"  role="button">Resume</a>
+                                        <br>
+                                    {% elif user in course.students_completed.all %}  
+                                        <p class="course_finished">You have completed this course. Go to <a href="{% url 'dashboard' %}">dashboard<a> for grade.</p>
+                                        <br> 
+                                    {% else %}
+                                        <form>
+                                            {% csrf_token %}
+                                            <button id="join_Course_{{course.course_name}}" type="button" class="btn btn-outline-primary" data-course_id = {{course.id}} onclick="joinCourse('{{course.id}}')">Join</button>
+                                        </form>    
+                                        <br>
+                                    {% endif %}
+                                </div>
+                            {% elif course.future == True %}
+                                <h4 class="future_status">Future Class<h4>
+                                    <div class="main_course_list">
+                                    <h4 class="class_title">Understanding {{course.course_name}}</h4>
+                                    <p class="class_discription">
+                                        {{course.course_info}}
+                                    </p>
+                                    </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}
+                {% else %}
+                    {% for course in courses %}
+                        {% if course.course_unit == unit %}
+                            {% if course.current == True %}
+                                <h4 class="course_status">Currently Offered Class<h4>
+                                <div class="main_course_list">
+                                <h4 class="class_title">Understanding {{course.course_name}}</h4>
+                                <p class="class_discription">
+                                    {{course.course_info}}
+                                </p>
+                                </div>
+                            {% elif course.future == True %}
+                            <h4 class="future_status">Future Class<h4>
+                                <div class="main_course_list">
+                                <h4 class="class_title">Understanding {{course.course_name}}</h4>
+                                <p class="class_discription">
+                                    {{course.course_info}}
+                                </p>
+                                </div>
+
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}    
+                {% endif %}
+        </div> 
+    {% endfor %}          
+        
+          
+</div>
+    
+{% endblock %}

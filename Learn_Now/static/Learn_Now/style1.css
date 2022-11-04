@@ -1,0 +1,91 @@
+.little_p {
+    font-size: medium;
+}
+
+.lecture_description {
+    padding: 5px;
+    font-size: 19px;
+}
+
+#base_img {
+    border: 2px black solid;
+    padding: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.unit-center {
+    padding: 8px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+.unit_title {
+    padding: 4px;
+    margin: 4px;
+    border: black solid 2px;
+    background-color: lightblue;
+}
+
+.course_status {
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin: 4px;
+    border: black solid 2px;
+    background-color: rgb(104, 159, 106);
+}
+
+.future_status {
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin: 4px;
+    border: black solid 2px;
+    background-color: rgb(199, 180, 93);
+}
+
+.Test_button {
+    padding: 4px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    background-color: lightsalmon;
+}
+
+.main_course_list {
+    padding: 10px;
+    border-top: solid lightblue;
+    border-bottom: solid black;
+    margin: 18px;
+}
+
+.class_discription {
+    font-size: 18px;
+}
+
+#course_entry_dashboard {
+    font-size: 12px
+}
+
+.drop_course_form {
+    float: right;
+}
+
+.currently_offered {
+    padding-left:15px;
+    padding-right: 15px;
+}
+
+.unit_div {
+    padding-top: 8px;
+}
+
+.course_finished {
+    color:  rgb(145, 37, 37);
+}

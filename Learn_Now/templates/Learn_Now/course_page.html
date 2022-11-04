@@ -1,0 +1,40 @@
+{% extends "Learn_Now/layout.html" %}
+{% load static %}
+{% block body %}
+
+<div class="unit-center">
+    <h3>Understanding {{course_n}}<h3>
+</div>
+
+
+<div class="unit-center">
+    
+    <h4 class="unit_title">INTRODUCTION</h4>
+    <p class="lecture_description">
+        This is a brief introduction for the professor, Rev. Dr. Chuck Meador.
+    </p>
+    <iframe class="unit-center" width="100%" height="400" src="{{course.intro_vid}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <div>
+
+    </div>
+</div>
+<br>
+{% for lecture in lectures %}
+    <div class="unit-center">
+        <h4 class="unit_title">LECTURE {{lecture.lecture_num}} : {{lecture.lecture_title}}</h4>
+        <p class="lecture_description">
+            {{lecture.lecture_info}}
+        </p>
+        <iframe class="unit-center" width="400" height="400" src="{{lecture.lecture_vid}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        {% for assign in assignments %}
+            {% if assign.assign_num == lecture.lecture_num and not assign.assign_completed  %}
+                <a href="{% url 'quiz' assign.course.id lecture.lecture_num %}"><button id="Quiz_button" class="Test_button" type="button" >Quiz</button></a>
+            {% elif assign.assign_num == lecture.lecture_num and assign.assign_completed %}
+                <button id="check_dashboard" class="Test_button" type="button">Quiz Complete, your grade is {{assign.assign_score}}</button>
+            {% endif %}
+        {% endfor %}    
+    </div>
+{% endfor %}
+
+
+{% endblock %}

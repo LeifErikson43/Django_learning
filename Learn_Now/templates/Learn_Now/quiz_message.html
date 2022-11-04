@@ -1,0 +1,10 @@
+{% extends "Learn_Now/layout.html" %}
+{% load static %}
+{% block body %}
+<div class="unit-center">
+    <h3>{{user}}<h3>
+    <p>Please answer all the questions in the quiz.</p>
+
+    <a href="{% url  'quiz' course_id quiz_num %}" >Return to Quiz</a>
+</div>
+{% endblock %}

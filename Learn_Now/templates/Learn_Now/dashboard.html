@@ -1,0 +1,42 @@
+{% extends "Learn_Now/layout.html" %}
+{% load static %}
+{% block body %}
+
+<div class="unit-center">
+    <h3>DASHBOARD</h3>
+    <h4 class="unit_title">Here are your classes:<h4>
+        <p class="little_p">Go to <a href="{% url 'index' %}">Home</a> page to choose a new class.</p>
+
+    {% for course in courses %}
+        <div id="course_entry_dashboard{{course.course.id}}">
+        <div class="main_course_list">
+            <h4 class="class_title">Understanding {{course.course.course_name}}</h4>
+            <p class="class_discription">
+                {{course.course.course_info}}
+            </p>
+            
+            {% if course.completed %}
+                {% for c_course in comp_courses %}
+                    {% if course.id == c_course.class_completed.id%}
+                        <h4>You have completed this Course<h4>
+                            <p>
+                                Your grade: {{c_course.grade}}
+                            </p>
+                    {% endif %}
+                {% endfor %}
+            {% else %}        
+                <a class="btn btn-primary" href="{% url 'course_page' course.course.id %}"  role="button">Resume</a>
+                <div class="drop_course_form">
+                    <form>
+                        {% csrf_token %}
+                        <button id="drop_course_{{course.course_name}}" type="button" class="btn btn-outline-primary" data-course_id = {{course.course.id}} onclick="dropCourse('{{course.course.id}}')">Drop Course</button>
+                    </form>
+                </div>
+            {% endif %}            
+            
+        </div>
+        </div>
+    {% endfor %}    
+</div>
+    
+{% endblock %}
